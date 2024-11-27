@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QueueMonitor\Service;
 
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;

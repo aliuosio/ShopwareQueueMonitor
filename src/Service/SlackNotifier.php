@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QueueMonitor\Service;
 
 use QueueMonitor\Contract\NotifierInterface;
