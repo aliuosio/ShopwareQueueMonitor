@@ -2,17 +2,22 @@
 
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-
-        <service id="QueueMonitor\Command\ExampleCommand">
-            <tag name="console.command"/>
+    <services xmlns="http://symfony.com/schema/dic/services">
+        <service id="QueueMonitor\Service\RabbitMQMonitorService" />
+        <service id="QueueMonitor\Service\EmailNotifier">
+            <argument key="$recipient">%queue_monitor.email_recipient%</argument>
+            <tag name="queue_monitor.notifier" />
         </service>
-
-        <service id="QueueMonitor\ScheduledTask\ExampleTask">
-            <tag name="shopware.scheduled.task"/>
+        <service id="QueueMonitor\Service\SlackNotifier">
+            <argument key="$webhookUrl">%queue_monitor.slack_webhook_url%</argument>
+            <tag name="queue_monitor.notifier" />
         </service>
-
+        <service id="QueueMonitor\Service\NotifierService">
+            <argument type="tagged" tag="queue_monitor.notifier" />
+        </service>
+        <service id="QueueMonitor\Command\RabbitMQMonitorCommand" />
     </services>
+
 </container>
