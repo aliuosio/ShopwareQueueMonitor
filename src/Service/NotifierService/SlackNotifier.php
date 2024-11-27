@@ -31,6 +31,6 @@ class SlackNotifier implements NotifierInterface
 
     private function getWebHookURL(): array|float|bool|int|string|null
     {
-        return $this->configService->get('QueueMonitor.config.slack_webhook_Url') ?? 'https://foobar.de';
+        return $this->configService->get('QueueMonitor.config.slackWebhookUrl') ?? 'https://foobar.de';
     }
 }

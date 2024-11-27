@@ -5,7 +5,8 @@
     "version": "0.1.2",
     "license": "MIT",
     "require": {
-        "shopware/core": "^v6.6.5.0"
+        "shopware/core": "^v6.6.5.0",
+        "php-amqplib/php-amqplib": "^3.7"
     },
     "extra": {
         "shopware-plugin-class": "QueueMonitor\\QueueMonitor",

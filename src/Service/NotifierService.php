@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace QueueMonitor\Service;
 
-use QueueMonitor\Service\NotifierService\EmailNotifier;
-use QueueMonitor\Service\NotifierService\SlackNotifier;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class NotifierService
 {
