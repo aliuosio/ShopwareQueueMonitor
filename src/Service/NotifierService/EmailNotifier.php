@@ -4,30 +4,24 @@ declare(strict_types=1);
 
 namespace QueueMonitor\Service\NotifierService;
 
-use QueueMonitor\Contract\NotifierInterface;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 
-class EmailNotifier implements NotifierInterface
+class EmailNotifier
 {
     public function __construct(
-        readonly private MailerInterface $mailer,
-        readonly private string $recipient,
+        readonly private SystemConfigService $configService,
     ) {
     }
 
-    /**
-     * @throws TransportExceptionInterface
-     */
     public function notify(string $message): void
     {
-        $email = (new Email())
-            ->from('no-reply@example.com')
-            ->to($this->recipient)
-            ->subject('Queue Monitor Alert')
-            ->text($message);
+        if (!$this->getRecipient()) {
+            throw new \RuntimeException('Email recipient is not configured.');
+        }
+    }
 
-        $this->mailer->send($email);
+    private function getRecipient(): ?string
+    {
+        return $this->configService->get('QueueMonitor.config.email_recipient') ?? 'default@example.com';
     }
 }

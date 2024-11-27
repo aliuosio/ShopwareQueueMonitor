@@ -11,7 +11,7 @@
         "shopware-plugin-class": "QueueMonitor\\QueueMonitor",
         "label": {
             "de-DE": "Shopware Queue Monitor",
-            "en-GB": "Skeleton plugin"
+            "en-GB": "Shopware Queue Monitor"
         }
     },
     "autoload": {

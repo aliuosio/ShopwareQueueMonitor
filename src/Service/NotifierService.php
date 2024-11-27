@@ -6,29 +6,24 @@ namespace QueueMonitor\Service;
 
 use QueueMonitor\Service\NotifierService\EmailNotifier;
 use QueueMonitor\Service\NotifierService\SlackNotifier;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class NotifierService
 {
-    public function __construct(
-        readonly private iterable $notifiers,
-    ) {
+    private SystemConfigService $configService;
+    private iterable $notifiers;
+
+    public function __construct(SystemConfigService $configService, iterable $notifiers)
+    {
+        $this->configService = $configService;
+        $this->notifiers = $notifiers;
     }
 
-    /**
-     * @throws TransportExceptionInterface
-     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
-     */
-    public function run(string $message, array $config): void
+    public function run(string $message): void
     {
         foreach ($this->notifiers as $notifier) {
-            if ($notifier instanceof SlackNotifier && ($config['enableSlack'] ?? false)) {
-                $notifier->notify($message);
-            }
-
-            if ($notifier instanceof EmailNotifier && ($config['enableEmail'] ?? false)) {
-                $notifier->notify($message);
-            }
+            $notifier->notify($message);
         }
     }
 }
