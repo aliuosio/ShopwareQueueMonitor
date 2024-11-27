@@ -6,22 +6,22 @@
         <title>Queue Monitor Settings</title>
 
         <input-field type="checkbox">
-            <name>enableSlack</name>
+            <name>enable_slack</name>
             <label>Enable Slack Notifications</label>
         </input-field>
 
         <input-field type="text">
-            <name>slackWebhookUrl</name>
+            <name>slack_webhook_Url</name>
             <label>Slack Webhook URL</label>
         </input-field>
 
         <input-field type="checkbox">
-            <name>enableEmail</name>
+            <name>enable_email</name>
             <label>Enable Email Notifications</label>
         </input-field>
 
         <input-field type="text">
-            <name>emailRecipient</name>
+            <name>email_recipient</name>
             <label>Email Recipient Address</label>
         </input-field>
     </card>

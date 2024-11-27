@@ -8,6 +8,6 @@ class RabbitMQMonitorService
 {
     public function checkStatus(): bool
     {
-        return true;
+        return false;
     }
 }

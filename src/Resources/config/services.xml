@@ -5,19 +5,30 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services xmlns="http://symfony.com/schema/dic/services">
-        <service id="QueueMonitor\Service\RabbitMQMonitorService" />
+        <service id="QueueMonitor\Service\RabbitMQMonitorService"/>
+
         <service id="QueueMonitor\Service\NotifierService\EmailNotifier">
-            <argument key="$recipient">%queue_monitor.email_recipient%</argument>
-            <tag name="queue_monitor.notifier" />
+            <argument key="$recipient">%email_recipient%</argument>
+            <tag name="queue_monitor.notifier"/>
         </service>
+
         <service id="QueueMonitor\Service\NotifierService\SlackNotifier">
-            <argument key="$webhookUrl">%queue_monitor.slack_webhook_url%</argument>
-            <tag name="queue_monitor.notifier" />
+            <argument key="$webhookUrl">%slack_webhook_url%</argument>
+            <tag name="queue_monitor.notifier"/>
         </service>
+
         <service id="QueueMonitor\Service\NotifierService">
-            <argument type="tagged" tag="queue_monitor.notifier" />
+            <argument type="tagged" tag="queue_monitor.notifier"/>
         </service>
-        <service id="QueueMonitor\Command\RabbitMQMonitorCommand" />
+
+        <service id="QueueMonitor\Command\Check">
+            <argument type="service" id="QueueMonitor\Service\RabbitMQMonitorService"/>
+            <argument type="service" id="QueueMonitor\Service\NotifierService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="console.command"/>
+        </service>
+
     </services>
+
 
 </container>
