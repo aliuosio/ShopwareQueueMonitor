@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QueueMonitor\Service;
+namespace QueueMonitor\Service\NotifierService;
 
 use QueueMonitor\Contract\NotifierInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
