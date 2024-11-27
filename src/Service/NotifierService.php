@@ -6,11 +6,10 @@ namespace QueueMonitor\Service;
 
 class NotifierService
 {
-
     public function __construct(
         readonly private iterable $notifiers
-    )
-    {}
+    ) {
+    }
 
     public function run(string $message): void
     {

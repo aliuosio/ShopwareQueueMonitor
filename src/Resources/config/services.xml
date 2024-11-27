@@ -9,6 +9,7 @@
 
         <service id="QueueMonitor\Service\NotifierService\EmailNotifier">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Symfony\Component\Mailer\MailerInterface"/>
             <tag name="queue_monitor.notifier"/>
         </service>
 
@@ -25,7 +26,6 @@
         <service id="QueueMonitor\Command\Check">
             <argument type="service" id="QueueMonitor\Service\RabbitMQMonitorService"/>
             <argument type="service" id="QueueMonitor\Service\NotifierService"/>
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <tag name="console.command"/>
         </service>
 

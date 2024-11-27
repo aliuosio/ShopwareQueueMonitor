@@ -19,16 +19,12 @@ class Check extends Command
 {
     public function __construct(
         readonly private RabbitMQMonitorService $monitorService,
-        readonly private NotifierService        $notifierService,
-        readonly ?string                        $name = null,
-    )
-    {
+        readonly private NotifierService $notifierService,
+        readonly ?string $name = null,
+    ) {
         parent::__construct($name);
     }
 
-    /**
-     * @return bool
-     */
     public function isUnhealthy(): bool
     {
         return (bool)$this->monitorService->checkStatus()['status'] == 'unhealthy';

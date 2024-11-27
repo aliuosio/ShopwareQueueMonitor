@@ -4,33 +4,43 @@ declare(strict_types=1);
 
 namespace QueueMonitor\Service\NotifierService;
 
-use QueueMonitor\Contract\NotifierInterface;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class SlackNotifier implements NotifierInterface
+class SlackNotifier extends AbstractNotifier
 {
     public function __construct(
-        readonly private SystemConfigService $configService,
-        readonly private HttpClientInterface $httpClient,
+        protected SystemConfigService $configService,
+        private readonly HttpClientInterface $httpClient
     ) {
+        parent::__construct($configService);
+    }
+
+    public function hasNotificationEnabled(): bool
+    {
+        return (bool) $this->configService->get('QueueMonitor.config.enableSlack');
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    public function notify(string $message): void
+    protected function send(string $message): void
     {
         $this->httpClient->request(
             'POST',
-            $this->getWebHookURL(),
+            $this->getRecipientOrUrl(),
             ['json' => ['text' => $message]]
         );
     }
 
-    private function getWebHookURL(): array|float|bool|int|string|null
+    protected function getRecipientOrUrl(): ?string
     {
-        return $this->configService->get('QueueMonitor.config.slackWebhookUrl') ?? 'https://foobar.de';
+        return $this->configService->get('QueueMonitor.config.slackWebhookUrl');
+    }
+
+    protected function getMissingRecipientMessage(): string
+    {
+        return 'No Webhook URL configured.';
     }
 }
