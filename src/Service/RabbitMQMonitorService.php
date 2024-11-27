@@ -9,16 +9,16 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 class RabbitMQMonitorService
 {
     /**
-     * @return array
-     * @todo refactor
+     * @todo use symfony messenger qeue for RabbitMQ
      */
     public function checkStatus(): array
     {
-        return $result = [
+        $result = [
             'status' => 'unhealthy',
             'error' => 'not good',
         ];
 
+        /**
         try {
             $connection = new AMQPStreamConnection('rabbitmq_host', 5672, 'user', 'password');
             $channel = $connection->channel();
@@ -34,6 +34,7 @@ class RabbitMQMonitorService
                 'error' => $e->getMessage(),
             ];
         }
+         */
 
         return $result;
     }
