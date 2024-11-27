@@ -6,13 +6,13 @@
     "license": "MIT",
     "require": {
         "shopware/core": "^v6.6.5.0",
-        "php-amqplib/php-amqplib": "^3.7"
+        "symfony/amqp-messenger": "^7.1"
     },
     "extra": {
         "shopware-plugin-class": "QueueMonitor\\QueueMonitor",
         "label": {
-            "de-DE": "Shopware Queue Monitor",
-            "en-GB": "Shopware Queue Monitor"
+            "de-DE": "Shopware 6 Queue Monitor",
+            "en-GB": "Shopware 6 Queue Monitor"
         }
     },
     "autoload": {
