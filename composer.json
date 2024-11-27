@@ -5,13 +5,13 @@
     "version": "0.1.2",
     "license": "MIT",
     "require": {
-        "shopware/core": "~6.6.0"
+        "shopware/core": "^v6.6.5.0"
     },
     "extra": {
         "shopware-plugin-class": "QueueMonitor\\QueueMonitor",
         "label": {
             "de-DE": "Shopware Queue Monitor",
-            "en-GB": "Shopware Queue Monitor"
+            "en-GB": "Skeleton plugin"
         }
     },
     "autoload": {
