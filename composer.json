@@ -1,5 +1,5 @@
 {
-    "name": "osioaliu/shopware-queue-monitor",
+    "name": "aliuosio/shopware-queue-monitor",
     "description": "Queue Monitoring for  RabbitMQ Shopware E-Mailjob",
     "type": "shopware-platform-plugin",
     "version": "0.1.1",
