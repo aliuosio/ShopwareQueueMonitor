@@ -2,7 +2,7 @@
     "name": "osioaliu/shopware-queue-monitor",
     "description": "Queue Monitoring for  RabbitMQ Shopware E-Mailjob",
     "type": "shopware-platform-plugin",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "require": {
         "shopware/core": "~6.6.0"
