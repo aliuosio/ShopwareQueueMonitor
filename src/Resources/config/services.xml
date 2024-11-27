@@ -30,9 +30,5 @@
             <tag name="console.command"/>
         </service>
 
-        <service id="QueueMonitor\ScheduledTask\CheckRabbitMQTaskHandler">
-            <tag name="shopware.scheduled_task" scheduledTask="QueueMonitor\ScheduledTask\CheckRabbitMQTaskHandler" />
-        </service>
-
     </services>
 </container>
