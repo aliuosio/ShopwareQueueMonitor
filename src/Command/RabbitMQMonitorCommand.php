@@ -10,6 +10,7 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class RabbitMQMonitorCommand extends Command
 {
@@ -23,13 +24,17 @@ class RabbitMQMonitorCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $config = $this->configService->get('QueueMonitor.config.notifiers');
 
         if (!$this->monitorService->checkStatus()) {
             $message = 'RabbitMQ queue is down.';
-            $this->notifierService->notify($message, $config);
+            $this->notifierService->run($message, $config);
         }
 
         $output->writeln('Queue monitoring executed.');
