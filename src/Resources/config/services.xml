@@ -5,6 +5,7 @@
            xsi:schemaLocation="http://www.symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services xmlns="http://symfony.com/schema/dic/services">
+
         <service id="QueueMonitor\Service\RabbitMQMonitorService"/>
 
         <service id="QueueMonitor\Service\NotifierService\EmailNotifier">
@@ -27,6 +28,15 @@
             <argument type="service" id="QueueMonitor\Service\RabbitMQMonitorService"/>
             <argument type="service" id="QueueMonitor\Service\NotifierService"/>
             <tag name="console.command"/>
+        </service>
+
+        <service id="QueueMonitor\ScheduledTask\Register">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="QueueMonitor\ScheduledTask\Check">
+            <argument type="service" id="scheduled_task.repository" />
+            <tag name="messenger.message_handler" />
         </service>
 
     </services>
