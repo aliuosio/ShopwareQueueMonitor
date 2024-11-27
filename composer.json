@@ -1,0 +1,27 @@
+{
+    "name": "queue-monitor/queue-monitor",
+    "description": "queue-monitor/queue-monitor",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "QueueMonitor\\QueueMonitor",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "QueueMonitor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "QueueMonitor\\Tests\\": "tests/"
+        }
+    }
+}
