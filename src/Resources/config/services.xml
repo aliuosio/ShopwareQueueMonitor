@@ -6,11 +6,11 @@
 
     <services xmlns="http://symfony.com/schema/dic/services">
         <service id="QueueMonitor\Service\RabbitMQMonitorService" />
-        <service id="QueueMonitor\Service\EmailNotifier">
+        <service id="QueueMonitor\Service\NotifierService\EmailNotifier">
             <argument key="$recipient">%queue_monitor.email_recipient%</argument>
             <tag name="queue_monitor.notifier" />
         </service>
-        <service id="QueueMonitor\Service\SlackNotifier">
+        <service id="QueueMonitor\Service\NotifierService\SlackNotifier">
             <argument key="$webhookUrl">%queue_monitor.slack_webhook_url%</argument>
             <tag name="queue_monitor.notifier" />
         </service>
