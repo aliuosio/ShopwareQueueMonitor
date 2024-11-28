@@ -30,11 +30,11 @@
             <tag name="console.command"/>
         </service>
 
-        <service id="QueueMonitor\ScheduledTask\Register">
+        <service id="QueueMonitor\ScheduledTask\QueueMonitorTaskHandler">
             <tag name="shopware.scheduled.task" />
         </service>
 
-        <service id="QueueMonitor\ScheduledTask\Check">
+        <service id="QueueMonitor\ScheduledTask\QueueMonitorTask">
             <argument type="service" id="scheduled_task.repository" />
             <tag name="messenger.message_handler" />
         </service>
