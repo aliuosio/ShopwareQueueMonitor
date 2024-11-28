@@ -30,12 +30,8 @@ class Check extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if ($this->isUnhealthy()) {
-            $this->notify();
-        }
-
+        $this->action();
         $output->writeln('Queue monitoring executed.');
-
         return Command::SUCCESS;
     }
 }
