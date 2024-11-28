@@ -10,7 +10,7 @@ class QueueMonitorTaskHandler extends ScheduledTask
 {
     public static function getTaskName(): string
     {
-        return 'queue_monitor.scheduled.task';
+        return 'queue_monitor';
     }
 
     public static function getDefaultInterval(): int
