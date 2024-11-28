@@ -12,8 +12,8 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler(handles: Register::class)]
-class Check extends ScheduledTaskHandler
+#[AsMessageHandler(handles: QueueMonitorTaskHandler::class)]
+class QueueMonitorTask extends ScheduledTaskHandler
 {
     use MonitorTrait;
 

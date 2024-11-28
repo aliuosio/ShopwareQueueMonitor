@@ -4,7 +4,7 @@ namespace QueueMonitor\ScheduledTask;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
-class Register extends ScheduledTask
+class QueueMonitorTaskHandler extends ScheduledTask
 {
     public static function getTaskName(): string
     {
