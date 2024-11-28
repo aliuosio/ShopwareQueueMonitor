@@ -11,6 +11,7 @@ use QueueMonitor\Service\RabbitMQMonitorService;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Messenger\Exception\ExceptionInterface;
 
 #[AsMessageHandler(handles: QueueMonitorTaskHandler::class)]
 class QueueMonitorTask extends ScheduledTaskHandler
@@ -26,6 +27,9 @@ class QueueMonitorTask extends ScheduledTaskHandler
         parent::__construct($scheduledTaskRepository, $exceptionLogger);
     }
 
+    /**
+     * @throws ExceptionInterface
+     */
     public function run(): void
     {
         $this->action();
