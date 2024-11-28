@@ -12,7 +12,7 @@ class SlackNotifier extends AbstractNotifier
 {
     public function __construct(
         protected SystemConfigService $configService,
-        private readonly HttpClientInterface $httpClient
+        private readonly HttpClientInterface $httpClient,
     ) {
         parent::__construct($configService);
     }

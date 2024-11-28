@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace QueueMonitor\Service\NotifierService;
 
 use QueueMonitor\Contract\NotifierInterface;
-use RuntimeException;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 abstract class AbstractNotifier implements NotifierInterface
 {
     public function __construct(
-        protected SystemConfigService $configService
+        protected SystemConfigService $configService,
     ) {
     }
+
     public function notify(string $message): void
     {
         if (!$this->hasNotificationEnabled()) {
@@ -21,7 +21,7 @@ abstract class AbstractNotifier implements NotifierInterface
         }
 
         if (!$this->getRecipientOrUrl()) {
-            throw new RuntimeException($this->getMissingRecipientMessage());
+            throw new \RuntimeException($this->getMissingRecipientMessage());
         }
 
         $this->send($message);

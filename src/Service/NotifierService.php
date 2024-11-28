@@ -7,7 +7,7 @@ namespace QueueMonitor\Service;
 class NotifierService
 {
     public function __construct(
-        readonly private iterable $notifiers
+        readonly private iterable $notifiers,
     ) {
     }
 

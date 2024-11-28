@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace QueueMonitor\Command;
 
+use QueueMonitor\Common\MonitorTrait;
 use QueueMonitor\Service\NotifierService;
 use QueueMonitor\Service\RabbitMQMonitorService;
-use QueueMonitor\Common\MonitorTrait;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,13 +21,11 @@ class Check extends Command
     use MonitorTrait;
 
     public function __construct(
-        RabbitMQMonitorService $monitorService,
-        NotifierService $notifierService,
+        private readonly RabbitMQMonitorService $monitorService,
+        private readonly NotifierService $notifierService,
         ?string $name = null,
     ) {
         parent::__construct($name);
-        $this->monitorService = $monitorService;
-        $this->notifierService = $notifierService;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -37,6 +35,7 @@ class Check extends Command
         }
 
         $output->writeln('Queue monitoring executed.');
+
         return Command::SUCCESS;
     }
 }

@@ -13,7 +13,7 @@ class EmailNotifier extends AbstractNotifier
 {
     public function __construct(
         protected SystemConfigService $configService,
-        private readonly MailerInterface $mailer
+        private readonly MailerInterface $mailer,
     ) {
         parent::__construct($configService);
     }
@@ -33,7 +33,7 @@ class EmailNotifier extends AbstractNotifier
             ->to($this->getRecipientOrUrl())
             ->subject('Queue went bad')
             ->text($message)
-            ->html('<p>' . nl2br($message) . '</p>');
+            ->html("<p>nl2br($message)</p>");
 
         $this->mailer->send($email);
     }
